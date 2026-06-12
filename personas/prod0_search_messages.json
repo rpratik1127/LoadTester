@@ -1,0 +1,53 @@
+{
+  "personas": [
+    {
+      "name": "SearchMessagesPersona",
+      "baseUrl": "https://care-api-prod0-tier3.sprinklr.com",
+      "steps": [
+        {
+          "name": "SearchMessages",
+          "protocol": "REST",
+          "method": "POST",
+          "path": "/care/community/rest/un-authenticated/message/search-messages",
+          "headers": {
+            "Content-Type": "application/json",
+            "X-Community-Authorization": "Bearer eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJTUFJJTktMUiIsInN1YiI6IkFjY2VzcyBUb2tlbiBHZW5lcmF0ZWQgZnJvbSBDb21tdW5pdHkiLCJuYmYiOjE3ODA4OTk4MTMsInNjb3BlIjpbIlJFQUQiLCJXUklURSJdLCJpc3MiOiJTUFJJTktMUiIsInR5cCI6IkpXVCIsImV4cCI6MTc4MTA3MzgxMywidG9rZW5UeXBlIjoiQUNDRVNTIiwiYXV0aFR5cGUiOiJTUFJfVU5BVVRIRU5USUNBVEVEIiwiaWF0IjoxNzgwOTAxMDEzLCJwcm9qZWN0SWQiOiIzYjNmOGM2Ny00NzFlLTQxYzAtYjk5ZS0wNTE2YjgzNzUyYjIiLCJqdGkiOiJzcHJpbmtsciJ9.AkmqdLBq1xQIYxFG4BgGqa0tTboNMAhxPCDwvYGfNkGM2zio53wzNvxpfxxkn-9Oyl6M20VeU6wkkvC-I1WxfYBtPOpbqmBQzUJGqJ7-9YnfXWwzVD-kYC4Becnnhg5ypKO1Nni5F7Hh8p_BwTdDtBCvI20Pruw3xi5YZ19h_NIUpzkJb-_1f4RXy0AvJEyMKEjfu8JK4L3bnLzfg-jCDtYxvHuoxPFkEChw0p_OHhSms4F7aPUwLeJ7zAf4B8g8-i5fBXQpnHVK3F3YBhSE7YmpWB36R9tgtTdQZLLdajKd5RctDkTARS3Fze0n8NJs5b43967aidsUCrO2oseRTA",
+            "X-Request-id": "Muahaha",
+            "X-COUNTRY": "IND",
+            "X-LANGUAGE": "en",
+            "x-page-url": "https://3b3f8c67-471e-41c0-b99e-0516b83752b2.prod0-tier3-care.sprinklr.com/community/en/topics/test-desktop/6960adae5c23e868ab3a169f/",
+            "Cookie": "AWSALB=CUCO16h5z0YThyQ/7nQ0f9EAa1pc7K7W6y0BeDTjQIjTeRYAh2rHhvd78fJP/6Xw+BW58R46WbTyUKDOMIqkuRuDEF+zRj1bykMlK1J6pNLfWYJZcEJ4c7pDtTmR; AWSALBCORS=CUCO16h5z0YThyQ/7nQ0f9EAa1pc7K7W6y0BeDTjQIjTeRYAh2rHhvd78fJP/6Xw+BW58R46WbTyUKDOMIqkuRuDEF+zRj1bykMlK1J6pNLfWYJZcEJ4c7pDtTmR"
+          },
+          "body": {
+            "additional": {
+              "includeCustomPages": "false",
+              "appendHierarchyDetails": "true",
+              "locale": "en",
+              "appendLastReplyByUser": "true",
+              "applyUserSort": "false",
+              "useAISearch": null
+            },
+            "filters": [
+              {}
+            ],
+            "queries": [],
+            "page": {
+              "page": 0,
+              "size": 10
+            },
+            "sorts": [
+              {
+                "key": "cTm",
+                "order": "DESC",
+                "additional": {
+                  "missing": "_last"
+                }
+              }
+            ]
+          },
+          "expectedStatus": 200
+        }
+      ]
+    }
+  ]
+}

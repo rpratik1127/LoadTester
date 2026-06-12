@@ -1,18 +1,27 @@
 package org.tester.report;
 
-import org.tester.selector.PersonaLoadConfig;
+import org.tester.metrics.MetricsCollector;
+import org.tester.model.Persona;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
-public class CsvReport {
+import org.tester.selector.PersonaLoadConfig;
 
-    private static final String FILE_NAME = "csvreport.csv";
+/** Writes step-level and optional per-request CSV reports. */
+public class CsvReportGenerator {
 
-    private static final String HEADER =
+    /** Large buffer reduces syscall overhead when writing large request logs. */
+    private static final int WRITE_BUFFER_SIZE = 256 * 1024;
+
+    private static final String SUMMARY_FILE_NAME = "csvreport.csv";
+
+    private static final String SUMMARY_HEADER =
             "timestamp,totalUsers,durationSec,totalRequests,success,failures,errorRate,throughput," +
                     "maxRequestsSentPerSec,avgRequestsSentPerSec," +
                     "avgResponseTimeMs,minResponseTimeMs,maxResponseTimeMs,p90Ms,p95Ms,p99Ms,p999Ms," +
@@ -47,12 +56,12 @@ public class CsvReport {
             long otherFailures
     ) {
         try {
-            File file = new File(FILE_NAME);
+            File file = new File(SUMMARY_FILE_NAME);
             boolean writeHeader = !file.exists() || file.length() == 0;
 
             try (FileWriter writer = new FileWriter(file, true)) {
                 if (writeHeader) {
-                    writer.write(HEADER);
+                    writer.write(SUMMARY_HEADER);
                 }
 
                 String timestamp = LocalDateTime.now()
@@ -94,10 +103,73 @@ public class CsvReport {
                 writer.write("\n");
             }
 
-            System.out.println("CSV report appended to: " + FILE_NAME);
+            System.out.println("CSV report appended to: " + SUMMARY_FILE_NAME);
 
         } catch (IOException e) {
             System.err.println("Failed to write CSV report: " + e.getMessage());
         }
+    }
+
+    public void generateStepReport(
+            MetricsCollector metricsCollector,
+            List<Persona> personas,
+            String filePath
+    ) throws IOException {
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath), WRITE_BUFFER_SIZE)) {
+            writer.write("Persona,Step,Total Requests,Success,Failures,Average Response Time(ms)\n");
+
+            for (Persona persona : personas) {
+                for (var step : persona.steps) {
+                    long total = metricsCollector.getTotalRequestsForStep(persona.name, step.name);
+
+                    if (total == 0) {
+                        continue;
+                    }
+
+                    writer.write(
+                            persona.name + "," +
+                                    step.name + "," +
+                                    total + "," +
+                                    metricsCollector.getSuccessCountForStep(persona.name, step.name) + "," +
+                                    metricsCollector.getFailureCountForStep(persona.name, step.name) + "," +
+                                    String.format("%.2f", metricsCollector.getAverageResponseTimeForStep(persona.name, step.name)) +
+                                    "\n"
+                    );
+                }
+            }
+        }
+
+        System.out.println("CSV report generated: " + filePath);
+    }
+
+    public void generateDetailedRequestReport(
+            MetricsCollector metricsCollector,
+            String filePath
+    ) throws IOException {
+
+        if (!metricsCollector.isDetailedRequestLogEnabled()) {
+            System.out.println("Detailed request log skipped (--no-request-log)");
+            return;
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath), WRITE_BUFFER_SIZE)) {
+            writer.write("Timestamp,UserId,Persona,Step,Status Code,Response Time(ms),Success\n");
+
+            for (var metric : metricsCollector.getAllMetrics()) {
+                writer.write(
+                        metric.timestamp + "," +
+                                metric.userId + "," +
+                                metric.personaName + "," +
+                                metric.stepName + "," +
+                                metric.statusCode + "," +
+                                metric.responseTimeMs + "," +
+                                metric.success +
+                                "\n"
+                );
+            }
+        }
+
+        System.out.println("Detailed request log generated: " + filePath);
     }
 }

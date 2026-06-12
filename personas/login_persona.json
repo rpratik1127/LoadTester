@@ -1,0 +1,50 @@
+{
+  "personas": [
+    {
+      "name": "AuthFlowPersona",
+      "baseUrl": "https://qa6-care-tier4.sprinklr.com",
+      "steps": [
+        {
+          "name": "Login",
+          "protocol": "REST",
+          "method": "GET",
+          "path": "/care/community/login",
+          "headers": {
+            "Content-Type": "application/json",
+            "username": "uu",
+            "password": "pp",
+            "Accept": "application/json",
+            "X-Community-Authorization": "Bearer eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJTUFJJTktMUiIsInN1YiI6IkFjY2VzcyBUb2tlbiBHZW5lcmF0ZWQgZnJvbSBDb21tdW5pdHkiLCJuYmYiOjE3ODA1Njg4NzIsInNjb3BlIjpbIlJFQUQiLCJXUklURSJdLCJpc3MiOiJTUFJJTktMUiIsInR5cCI6IkpXVCIsImV4cCI6MTc4MDc0Mjg3MiwidG9rZW5UeXBlIjoiQUNDRVNTIiwiYXV0aFR5cGUiOiJTUFJfVU5BVVRIRU5USUNBVEVEIiwiaWF0IjoxNzgwNTcwMDcyLCJwcm9qZWN0SWQiOiI4MTQ1M2E1Yi0yMzM5LTQ0NWQtOGNiOC1hNTcxMzg0YjhkMDIiLCJqdGkiOiJzcHJpbmtsciJ9.HoewMbyCizEv99jrprQoXF4k64anjCqO0d_jjmah2jc_qIxFfnLIBq33ieIkO0F4_GpUpGJg1Gi2mvjUroTsTtAlhH2Td0sE38DAh2WsKOUu7V04m8L1sxNPTS0OgcxlNpjJTYysVNF45fZ4kkfro5BgajSuaGM87Q6h_GfihkgU-Cie8CsLUG6Psv-2X6qymuOm8sG9OoVqH1EGGpFUZO2ZeQ0lcasoopjWuFsjcvk0qIkssZl1YnRJ4nPGjolHTMEDY7XjIBTQFPSDnCuKBxZjLAzFjT1hDf6-iO7cEsHbMPz7FRcpnN6fY8tZ5O3d-VRnYCIfvmIplShPPPQqoA",
+            "Cookie": "JSESSIONID=A0EDAA6D84B26D6477A8234B0B4DB3AF; connect.sid=s%3A81453a5b-2339-445d-8cb8-a571384b8d02-8601c77a-0391-4f7e-bb53-7525c87e3740.Syp%2F1B4ykWOgAdLQJrKEvbcwMX6Qhn1COGO5lB%2Bo%2BK0"
+          },
+          "extract": {
+            "authToken": "$.accessToken",
+            "communityUserId": "$.communityUserId"
+          },
+          "expectedStatus": 200
+        },
+        {
+          "name": "Post",
+          "protocol": "REST",
+          "method": "POST",
+          "path": "/care/community/rest/authenticated/message/post",
+          "headers": {
+            "Content-Type": "application/json",
+            "X-Community-Authorization": "Bearer ${authToken}",
+            "Cookie": "JSESSIONID="
+          },
+          "body": {
+            "topics": [
+              "69cdf0b74d9f504542855394"
+            ],
+            "title": "Bad Actor Creating a new Camera Post via API",
+            "message": "This is a new question! Can someone help me with the answer? I'd like to know more please! The time is 1780470245",
+            "communityPostType": "QUESTION",
+            "customFields": {}
+          },
+          "expectedStatus": 200
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "personas": [
+    {
+      "name": "SprinklrMessageSearch",
+      "baseUrl": "https://qa6-care-tier4.sprinklr.com",
+      "steps": [
+        {
+          "name": "SearchMessages",
+          "protocol": "REST",
+          "method": "POST",
+          "path": "/care/community/rest/un-authenticated/message/search-messages",
+          "headers": {
+            "Content-Type": "application/json",
+            "X-Community-Authorization": "Bearer eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJTUFJJTktMUiIsInN1YiI6IkFjY2VzcyBUb2tlbiBHZW5lcmF0ZWQgZnJvbSBDb21tdW5pdHkiLCJuYmYiOjE3ODA5MzQwMjgsInNjb3BlIjpbIlJFQUQiLCJXUklURSJdLCJpc3MiOiJTUFJJTktMUiIsInR5cCI6IkpXVCIsImV4cCI6MTc4MTEwODAyOCwidG9rZW5UeXBlIjoiQUNDRVNTIiwiYXV0aFR5cGUiOiJTUFJfVU5BVVRIRU5USUNBVEVEIiwiaWF0IjoxNzgwOTM1MjI4LCJwcm9qZWN0SWQiOiI4MTQ1M2E1Yi0yMzM5LTQ0NWQtOGNiOC1hNTcxMzg0YjhkMDIiLCJqdGkiOiJzcHJpbmtsciJ9.GBajeJoubv2VgZz1Bx3JRY5Ihb2tuBHHbsXvuOUU7qoLValvoYp1BH5dbF8fr1fK_ZBRGDH5Ng3KochTmGwi69bpcl9-J6mPmDbLj1-CT6MJP1d9vwUbUodVinjN2RcqUUXMPHqsEKoH1BFQErtYkF9wJ8_nnZzDIf8ocfgSskvc-Eq3m5y17vtnnaPxKvocPxDO6q6wXV7Y7bomJgyU3TMYiiTSzApBGaPTdPl7OJGCeMzt-NUNTZRpmpM9ik8K5DDsco_bDiNZJwqxdarAwXMfel9mGflHldUDkUAhXrEu0tuYI8CaFJGehTuSLY2zuhNMwl5euIvujnciQ0Zwug",
+            "X-Request-id": "Muahaha",
+            "X-COUNTRY": "IND",
+            "X-LANGUAGE": "en",
+            "Cookie": "JSESSIONID=A0EDAA6D84B26D6477A8234B0B4DB3AF"
+          },
+          "body": {
+            "additional": {
+              "includeCustomPages": "false",
+              "appendHierarchyDetails": "true",
+              "locale": "en",
+              "appendLastReplyByUser": "true",
+              "applyUserSort": "false",
+              "useAISearch": null,
+              "includeArchivedAssetType": "CATEGORY",
+              "includeArchivedAssetId": "647a1db3abcdf40a319897f7"
+            },
+            "filters": [{}],
+            "queries": [],
+            "page": {
+              "page": 0,
+              "size": 25
+            },
+            "sorts": [
+              {
+                "key": "cTm",
+                "order": "DESC",
+                "additional": {
+                  "missing": "_last"
+                }
+              }
+            ]
+          },
+          "expectedStatus": 200
+        }
+      ]
+    }
+  ]
+}

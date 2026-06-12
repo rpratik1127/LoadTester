@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * Interactive CLI for choosing load mode and per-persona values.
+ */
 public class PersonaUserSelector {
 
     public PersonaLoadConfig selectLoadConfig(List<Persona> personas) {
@@ -52,13 +55,13 @@ public class PersonaUserSelector {
                 valuesPerPersona.put(persona.name, value);
                 if (mode == LoadInputMode.USERS) {
                     totalUsers += value;
-                } else {
-                    totalUsers += 1;
                 }
             }
         }
 
-        PersonaLoadConfig.setTotalUsers(totalUsers);
+        if (mode == LoadInputMode.USERS) {
+            PersonaLoadConfig.setTotalUsers(totalUsers);
+        }
         return new PersonaLoadConfig(mode, valuesPerPersona);
     }
 

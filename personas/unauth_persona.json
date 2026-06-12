@@ -1,0 +1,94 @@
+{
+  "personas": [
+    {
+      "name": "UnauthFlowPersona",
+      "baseUrl": "https://qa6-care-tier4.sprinklr.com",
+      "steps": [
+        {
+          "name": "GetUnauthToken",
+          "protocol": "REST",
+          "method": "POST",
+          "path": "/care/community/jwt/un-authenticated/token",
+          "queryParams": {
+            "requestToken": "eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJTUFJJTktMUiIsInN1YiI6IlByZVNoYXJlZCBUb2tlbiBHZW5lcmF0ZWQgZnJvbSBDb21tdW5pdHkiLCJzY29wZSI6WyJSRUFEIiwiV1JJVEUiXSwiaXNzIjoiU1BSSU5LTFIiLCJ0eXAiOiJKV1QiLCJhdXRoVHlwZSI6IlNQUl9VTkFVVEhFTlRJQ0FURUQiLCJ0b2tlblR5cGUiOiJQUkVfU0hBUkVEIiwiaWF0IjoxNjkyNjg0NzA1LCJqdGkiOiJzcHJpbmtsciJ9.BtjW5KJQ_wNsUyGkZKP0qCcgZRFqlmxHyWDXNZrjMf0r03cAWy46bKottw_0tmCtN84ZV-3Akzam0RNF7smZ3ttAU6J3XQ7OXfBY9N3spIiEvSV3thXkvC3Lae-5XwUtml4ci2DVasdR4HTTEnjuIJ_bnQy8l-ijSNBNY2CM1sJlFD3wCG7BXp6fSNH6mzjEqgPh2_BbPL-NjAd_3Tv-VWV91see3OiF09A66WjYixNqsOW-XeDXz4R8u3Wuqc7NHRexlK8s_jOu0CoeAVjRV7A1JfB8WAqX6EHG2sBv1FDZ9IqT0kw8U57Qbge6K1kBigh56zyRVo0KcuGex_Z3Pw&projectId=81453a5b-2339-445d-8cb8-a571384b8d02"
+          },
+          "extract": {
+            "unauthToken": "$body"
+          },
+          "expectedStatus": 200
+        },
+        {
+          "name": "SearchMessages",
+          "protocol": "REST",
+          "method": "POST",
+          "path": "/care/community/rest/un-authenticated/message/search-messages",
+          "headers": {
+            "Content-Type": "application/json",
+            "X-Community-Authorization": "Bearer ${unauthToken}"
+          },
+          "body": {
+            "filters": [
+              {
+                "field": "cId",
+                "filterType": "IN",
+                "values": []
+              }
+            ],
+            "page": {
+              "page": 0,
+              "size": 10
+            },
+            "sorts": [
+              {
+                "key": "cTm",
+                "order": "DESC"
+              }
+            ]
+          },
+          "expectedStatus": 200
+        },
+        {
+          "name": "OpenPostLookup",
+          "protocol": "REST",
+          "method": "GET",
+          "path": "/care/community/rest/un-authenticated/lookup/community_message/6a2143836616cd0f1249cd2e",
+          "headers": {
+            "Content-Type": "application/json",
+            "X-Community-Authorization": "Bearer ${unauthToken}"
+          },
+          "expectedStatus": 200
+        },
+        {
+          "name": "SearchComments",
+          "protocol": "REST",
+          "method": "POST",
+          "path": "/care/community/rest/un-authenticated/external/message/search-comments-with-replies",
+          "headers": {
+            "Content-Type": "application/json",
+            "X-Community-Authorization": "Bearer ${unauthToken}"
+          },
+          "body": {
+            "filters": [
+              {
+                "field": "cId",
+                "filterType": "IN",
+                "values": []
+              }
+            ],
+            "page": {
+              "page": 0,
+              "size": 10
+            },
+            "sorts": [
+              {
+                "key": "cTm",
+                "order": "DESC"
+              }
+            ]
+          },
+          "expectedStatus": 200
+        }
+      ]
+    }
+  ]
+}

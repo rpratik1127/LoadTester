@@ -1,0 +1,53 @@
+{
+  "personas": [
+    {
+      "name": "SprinklrMessageSearch",
+      "baseUrl": "https://qa6-care-tier4.sprinklr.com",
+      "steps": [
+        {
+          "name": "SearchMessages",
+          "protocol": "REST",
+          "method": "POST",
+          "path": "/care/community/rest/un-authenticated/message/search-messages",
+          "headers": {
+            "Content-Type": "application/json",
+            "X-Community-Authorization": "Bearer eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJTUFJJTktMUiIsInN1YiI6IkFjY2VzcyBUb2tlbiBHZW5lcmF0ZWQgZnJvbSBDb21tdW5pdHkiLCJuYmYiOjE3ODAzMTI0NTAsInNjb3BlIjpbIlJFQUQiLCJXUklURSJdLCJpc3MiOiJTUFJJTktMUiIsInR5cCI6IkpXVCIsImV4cCI6MTc4MDQ4NjQ1MCwidG9rZW5UeXBlIjoiQUNDRVNTIiwiYXV0aFR5cGUiOiJTUFJfVU5BVVRIRU5USUNBVEVEIiwiaWF0IjoxNzgwMzEzNjUwLCJwcm9qZWN0SWQiOiI4MTQ1M2E1Yi0yMzM5LTQ0NWQtOGNiOC1hNTcxMzg0YjhkMDIiLCJqdGkiOiJzcHJpbmtsciJ9.hAg_V0V6Z7Rb2ZOdi9smEUYHJ_VkfeaNhCKZwiyH185Y-kJQJFXJkIiK9NJPnbbu873W-9o8OKgo0TttfO2O4hbzx6PT08A2KGoXIz4cAaSDqqbuf73qxh0QYMOLbBdr4j9or1gAco9WZ5nwMKbRi1H_krfBYWIMU9mqG5DuoWwhdVDv3W8w_LgOL5lERZ7cDci0BkT1DOglmCBr5OyD87tmhP6hunpXZnuKkmc1o_e9IwtBRvO2wDDeU8K4feHOPGrGIwOxRlJcAWVIpc0MnTx5-5zoFFUYHqADxPNYTLbnkk-pJX-n0ch9JlOkzKZyf16R9UC2Yzq38thhsww-4w",
+            "X-Request-id": "Muahaha",
+            "X-COUNTRY": "IND",
+            "X-LANGUAGE": "en",
+            "x-page-url": "http://www.dell.com/community/en/topics/laptops-general-read-only/?page=2",
+            "Cookie": "JSESSIONID=A0EDAA6D84B26D6477A8234B0B4DB3AF"
+          },
+          "body": {
+            "additional": {
+              "includeCustomPages": "false",
+              "appendHierarchyDetails": "true",
+              "locale": "en",
+              "appendLastReplyByUser": "true",
+              "applyUserSort": "false",
+              "useAISearch": null,
+              "includeArchivedAssetType": "CATEGORY",
+              "includeArchivedAssetId": "647a1db3abcdf40a319897f7"
+            },
+            "filters": [{}],
+            "queries": [],
+            "page": {
+              "page": 0,
+              "size": 25
+            },
+            "sorts": [
+              {
+                "key": "cTm",
+                "order": "DESC",
+                "additional": {
+                  "missing": "_last"
+                }
+              }
+            ]
+          },
+          "expectedStatus": 200
+        }
+      ]
+    }
+  ]
+}
