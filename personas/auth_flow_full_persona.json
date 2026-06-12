@@ -10,7 +10,7 @@
           "method": "POST",
           "path": "/care/community/jwt/un-authenticated/token",
           "queryParams": {
-            "requestToken": "eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJTUFJJTktMUiIsInN1YiI6IlByZVNoYXJlZCBUb2tlbiBHZW5lcmF0ZWQgZnJvbSBDb21tdW5pdHkiLCJzY29wZSI6WyJSRUFEIiwiV1JJVEUiXSwiaXNzIjoiU1BSSU5LTFIiLCJ0eXAiOiJKV1QiLCJhdXRoVHlwZSI6IlNQUl9VTkFVVEhFTlRJQ0FURUQiLCJ0b2tlblR5cGUiOiJQUkVfU0hBUkVEIiwiaWF0IjoxNjkyNjg0NzA1LCJqdGkiOiJzcHJpbmtsciJ9.BtjW5KJQ_wNsUyGkZKP0qCcgZRFqlmxHyWDXNZrjMf0r03cAWy46bKottw_0tmCtN84ZV-3Akzam0RNF7smZ3ttAU6J3XQ7OXfBY9N3spIiEvSV3thXkvC3Lae-5XwUtml4ci2DVasdR4HTTEnjuIJ_bnQy8l-ijSNBNY2CM1sJlFD3wCG7BXp6fSNH6mzjEqgPh2_BbPL-NjAd_3Tv-VWV91see3OiF09A66WjYixNqsOW-XeDXz4R8u3Wuqc7NHRexlK8s_jOu0CoeAVjRV7A1JfB8WAqX6EHG2sBv1FDZ9IqT0kw8U57Qbge6K1kBigh56zyRVo0KcuGex_Z3Pw&projectId=81453a5b-2339-445d-8cb8-a571384b8d02"
+            "requestToken": "..----"
           },
 
           "extract": {
@@ -29,7 +29,7 @@
             "password": "HLK3Txcef#",
             "Accept": "application/json",
             "X-Community-Authorization": "Bearer ${unauthToken}",
-            "Cookie": "JSESSIONID=A0EDAA6D84B26D6477A8234B0B4DB3AF; connect.sid=s%3A81453a5b-2339-445d-8cb8-a571384b8d02-8601c77a-0391-4f7e-bb53-7525c87e3740.Syp%2F1B4ykWOgAdLQJrKEvbcwMX6Qhn1COGO5lB%2Bo%2BK0"
+            "Cookie": "JSESSIONID=; connect.sid=s%3"
           },
           "extract": {
             "authToken": "accessToken",
@@ -45,7 +45,7 @@
           "headers": {
             "Content-Type": "application/json",
             "X-Community-Authorization": "Bearer ${authToken}",
-            "Cookie": "JSESSIONID=A0EDAA6D84B26D6477A8234B0B4DB3AF"
+            "Cookie": "JSESSIONID="
           },
           "body": {
             "topics": [
@@ -76,7 +76,7 @@
           "headers": {
             "Content-Type": "application/json",
             "X-Community-Authorization": "Bearer ${authToken}",
-            "Cookie": "JSESSIONID=A0EDAA6D84B26D6477A8234B0B4DB3AF"
+            "Cookie": "JSESSIONID="
           },
           "body": {
             "objectId": "${postId}",
@@ -97,7 +97,7 @@
           "headers": {
             "Content-Type": "application/json",
             "X-Community-Authorization": "Bearer ${authToken}",
-            "Cookie": "JSESSIONID=A0EDAA6D84B26D6477A8234B0B4DB3AF"
+            "Cookie": "JSESSIONID="
           },
           "body": {
             "objectId": "${commentId}",
