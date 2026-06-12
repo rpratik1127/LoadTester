@@ -6,7 +6,6 @@ Async HTTP load tester built with Netty. Runs persona-based API flows as virtual
 
 - **JDK 26** (see `pom.xml` compiler target)
 - **Maven 3.9+**
-- On JDK 24+, Netty uses `sun.misc.Unsafe` for direct memory. The exec plugin already passes `--sun-misc-unsafe-memory-access=allow` to suppress warnings.
 
 ## Build
 
@@ -46,7 +45,7 @@ After startup, the tool asks (stdin):
 | `--track-sent-rps` | off | Track send-time RPS separately from completed-response throughput |
 | `--sticky-connections` | off | One serialized HTTP channel per virtual user per host (session-like) |
 
-Default connection mode is **pooled** (acquire/release per request, k6-style).
+Default connection mode is **pooled** (acquire/release per request).
 
 ## Output
 
