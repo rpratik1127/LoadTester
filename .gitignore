@@ -10,6 +10,7 @@ step-report.csv
 request-log.csv
 graphs/
 results/
+test_results*/
 
 ### IntelliJ IDEA ###
 .idea/
